@@ -1,0 +1,155 @@
+detect_offensive_language_task:
+  description: >
+    Analyze the user's idea about "{topic}" and identify any offensive, inappropriate, or harmful phrasing.
+    This includes insults, hostile language, harmful generalizations, or culturally insensitive content.
+    Use both linguistic and contextual cues to flag problematic language.
+
+    Input idea: "{idea}"
+
+    Annotate the flagged segments with type, severity, and confidence score.
+  expected_output: >
+    A structured report containing:
+    1. The original input idea
+    2. An annotated version with flagged segments
+    3. A list of flagged segments including:
+       - Offense type (e.g., slur, hostile tone, generalization)
+       - Confidence score (0–1)
+       - Recommended next step (e.g., rephrase, warn, discard)
+  output_file: output/1.offensive_segments_report.md
+  agent: content_moderator
+
+
+mitigate_tone_task:
+  description: >
+    Rephrase flagged segments from the idea about "{topic}" to reduce offense or aggression while keeping the original meaning.
+    
+    Input idea: "{idea}"
+
+    Your goals are:
+    1. Rephrase each flagged segment in a respectful and inclusive tone.
+    2. Ensure the overall idea remains civil and professional.
+    3. Re-check for any residual tone issues. If problems persist, suggest routing it back to moderation.
+  expected_output: >
+    A report including:
+    - The fully rephrased idea
+    - A mapping table with:
+      - Original flagged segment
+      - Revised version
+      - Explanation of the change
+      - Tone severity reduction score (0–1)
+  output_file: output/2.mitigated_tone_report.md
+  agent: content_moderator
+  context:
+    - detect_offensive_language_task
+
+
+split_and_rephrase_task:
+  description: >
+    Simplify the idea about "{topic}" by breaking down complex or nested sentences into clear, shorter ones.
+
+    Input idea: "{idea}"
+
+    Your objectives are:
+    1. Identify sentences that are complex or overly long.
+    2. Break or rephrase them into simpler units.
+    3. Preserve logical flow and meaning throughout.
+  expected_output: >
+    A rewritten version of the idea featuring:
+    - Clear and concise sentences
+    - Preserved meaning and tone
+    - Logical coherence and professional readability
+  output_file: output/3.restructured_idea_report.md
+  agent: clarity_simplifier
+  context:
+    - mitigate_tone_task
+
+
+key_point_extractor_task:
+  description: >
+    Identify and rank the most important ideas from the user's submission about "{topic}".
+
+    Input idea: "{idea}"
+
+    Your goals:
+    1. Extract core concepts and arguments.
+    2. Rank their importance to the message.
+    3. Keep key points short but informative.
+  expected_output: >
+    A ranked list of key points including:
+    - Key concepts and claims
+    - Core values or opinions
+    - A salience score (1 = most important)
+  output_file: output/4.key_points_report.md
+  agent: essence_preserver
+  context:
+    - split_and_rephrase_task
+
+
+preserve_semantic_meaning_task:
+  description: >
+    Compare the refined idea from split_and_rephrase_task with the original idea about "{topic}" to ensure the key message is preserved.
+
+    Input:
+    - Original idea: "{idea}"
+    - Refined idea
+    - Extracted key points
+
+    Your responsibilities:
+    1. Compare refined vs original idea.
+    2. Check if all key points are retained.
+    3. Flag any missing or altered meaning.
+  expected_output: >
+    A validation report including:
+    - Pass/fail status
+    - Missing/altered key points (if any)
+    - Suggestions for adjustment
+  output_file: output/5.semantic_preservation_report.md
+  agent: essence_preserver
+  context:
+    - split_and_rephrase_task
+    - key_point_extractor_task
+
+
+relevance_evaluator_task:
+  description: >
+    Evaluate how relevant the refined idea is to the topic "{topic}" using extracted key points for context.
+
+    Input:
+    - Refined idea
+    - Key points
+
+    Your objectives:
+    1. Score the idea’s alignment to the topic.
+    2. Provide suggestions if relevance is weak.
+  expected_output: >
+    A relevance evaluation report with:
+    - Relevance score (0–100)
+    - Relevance rationale
+    - Suggestions for improved alignment if needed
+  output_file: output/6.relevance_evaluation_report.md
+  agent: relevance_assessor
+  context:
+    - split_and_rephrase_task
+    - key_point_extractor_task
+
+
+clarity_refiner_task:
+  description: >
+    Perform a final polish on the refined idea from split_and_rephrase_task to ensure grammar, clarity, and presentation quality.
+
+    Input:
+    - Refined idea
+
+    Tasks:
+    1. Correct grammar and punctuation.
+    2. Simplify language where needed.
+    3. Ensure a smooth, logical flow.
+    Do not modify meaning or key points.
+  expected_output: >
+    A clean and professional final version of the idea, ready for presentation or publication.
+  output_file: output/7.final_refined_idea.md
+  agent: clarity_simplifier
+  context:
+    - split_and_rephrase_task
+
+

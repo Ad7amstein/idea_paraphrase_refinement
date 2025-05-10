@@ -1,0 +1,9 @@
+knowledge_base_sources:
+  - name: company_guidelines
+    type: text
+    path: ./knowledge/company_guidelines.md
+    description: company guidelines
+  - name: thotron_knowledge_base
+    type: text
+    path: ./knowledge/thotron_knowledge_base.md
+    description: thotron knowledge base
