@@ -44,6 +44,24 @@ idea_paraphrase_refinement/
    pip install -e .
    ```
 
+## 🔑 Environment Variables
+
+Before running the project, you need to set up your environment variables. Create a `.env` file in the root directory with the following variables:
+
+```bash
+# Required API Keys
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Optional Configuration
+MODEL_NAME=gpt-4  # or your preferred model
+TEMPERATURE=0.7   # adjust as needed
+```
+
+Make sure to:
+1. Never commit your `.env` file (it's already in .gitignore)
+2. Keep your API keys secure
+3. Replace the placeholder values with your actual API keys
+
 ## 💻 Usage
 
 The project provides several command-line tools:
