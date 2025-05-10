@@ -51,12 +51,8 @@ Before running the project, you need to set up your environment variables. Creat
 
 ```bash
 # Required API Keys
-OPENAI_API_KEY=your_openai_api_key_here  # Required for CrewAI agents
-
-# Optional Configuration
-MODEL_NAME=gpt-4  # Default model for agents
-TEMPERATURE=0.7   # Controls response randomness
-MAX_TOKENS=2000   # Maximum tokens per response
+MODEL=<Model_Name>  # Required for CrewAI agents
+API_BASE=http://localhost:11434
 ```
 
 Make sure to:
