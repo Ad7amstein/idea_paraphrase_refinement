@@ -1,5 +1,8 @@
 # Idea Paraphrase Refinement 🤖
-
+[![GitHub Stars](https://img.shields.io/github/stars/Ad7amstein/idea_paraphrase_refinement?style=social)](https://github.com/Ad7amstein/idea_paraphrase_refinement/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Ad7amstein/idea_paraphrase_refinement?style=social)](https://github.com/Ad7amstein/idea_paraphrase_refinement/network/members)
+[![GitHub Issues](https://img.shields.io/github/issues/Ad7amstein/idea_paraphrase_refinement)](https://github.com/Ad7amstein/idea_paraphrase_refinement/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Ad7amstein/idea_paraphrase_refinement)](https://github.com/Ad7amstein/idea_paraphrase_refinement/pulls)
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![CrewAI](https://img.shields.io/badge/CrewAI-0.118.0-orange.svg)](https://github.com/joaomdmoura/crewAI)
@@ -51,12 +54,8 @@ Before running the project, you need to set up your environment variables. Creat
 
 ```bash
 # Required API Keys
-OPENAI_API_KEY=your_openai_api_key_here  # Required for CrewAI agents
-
-# Optional Configuration
-MODEL_NAME=gpt-4  # Default model for agents
-TEMPERATURE=0.7   # Controls response randomness
-MAX_TOKENS=2000   # Maximum tokens per response
+MODEL=<Model_Name>  # Required for CrewAI agents
+API_BASE=http://localhost:11434
 ```
 
 Make sure to:
