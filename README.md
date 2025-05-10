@@ -39,8 +39,9 @@ idea_paraphrase_refinement/
    python -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
-4. Install the package:
+4. Install the package and dependencies:
    ```bash
+   pip install -r requirements.txt
    pip install -e .
    ```
 
@@ -50,34 +51,33 @@ Before running the project, you need to set up your environment variables. Creat
 
 ```bash
 # Required API Keys
-OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here  # Required for CrewAI agents
 
 # Optional Configuration
-MODEL_NAME=gpt-4  # or your preferred model
-TEMPERATURE=0.7   # adjust as needed
+MODEL_NAME=gpt-4  # Default model for agents
+TEMPERATURE=0.7   # Controls response randomness
+MAX_TOKENS=2000   # Maximum tokens per response
 ```
 
 Make sure to:
 1. Never commit your `.env` file (it's already in .gitignore)
 2. Keep your API keys secure
 3. Replace the placeholder values with your actual API keys
+4. Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
 ## 💻 Usage
 
 The project provides several command-line tools:
 
 ```bash
-# Run the main paraphrasing process
-idea_paraphrase_refinement
-
 # Run the crew
-run_crew
+crewai run
 
 # Train the model
-train
+crewai train
 
 # Replay previous runs
-replay
+crewai replay
 
 # Run tests
 test
