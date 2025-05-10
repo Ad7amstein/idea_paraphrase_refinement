@@ -1,5 +1,8 @@
 # Idea Paraphrase Refinement 🤖
-
+[![GitHub Stars](https://img.shields.io/github/stars/Ad7amstein/idea_paraphrase_refinement?style=social)](https://github.com/Ad7amstein/idea_paraphrase_refinement/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Ad7amstein/idea_paraphrase_refinement?style=social)](https://github.com/Ad7amstein/idea_paraphrase_refinement/network/members)
+[![GitHub Issues](https://img.shields.io/github/issues/Ad7amstein/idea_paraphrase_refinement)](https://github.com/Ad7amstein/idea_paraphrase_refinement/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Ad7amstein/idea_paraphrase_refinement)](https://github.com/Ad7amstein/idea_paraphrase_refinement/pulls)
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![CrewAI](https://img.shields.io/badge/CrewAI-0.118.0-orange.svg)](https://github.com/joaomdmoura/crewAI)
