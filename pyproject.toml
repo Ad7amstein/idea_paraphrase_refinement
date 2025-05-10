@@ -1,0 +1,23 @@
+[project]
+name = "idea_paraphrase_refinement"
+version = "0.1.0"
+description = "Idea_Paraphrase_Refinement using crewAI"
+authors = [{ name = "Adham Allam", email = "adham32003200@gmail.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.118.0,<1.0.0"
+]
+
+[project.scripts]
+idea_paraphrase_refinement = "idea_paraphrase_refinement.main:run"
+run_crew = "idea_paraphrase_refinement.main:run"
+train = "idea_paraphrase_refinement.main:train"
+replay = "idea_paraphrase_refinement.main:replay"
+test = "idea_paraphrase_refinement.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
